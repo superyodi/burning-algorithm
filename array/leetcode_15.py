@@ -1,6 +1,6 @@
 # 15. 3Sum
 
-# [Try 1: Accepted] Time Limit Exceeded
+# [Try 1: Time Limit Exceeded]
 
 from itertools import combinations
 
@@ -27,9 +27,10 @@ class Solution:
         return answers
 
 
+# [Try 2: Accepted] 1832 ms 16.7 MB
+from itertools import combinations
 
 
-# 풀다말았음
 class Solution2:
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -58,6 +59,5 @@ class Solution2:
         answers = list(map(lambda x: list(x), answers))
 
         return answers
-
 
 
