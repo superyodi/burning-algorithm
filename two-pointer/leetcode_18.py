@@ -1,7 +1,6 @@
 # 18. 4Sum
 
 # [Try 1. Accepted]	1132 ms	14.4 MB
-
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         answer = set()
