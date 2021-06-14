@@ -1,27 +1,31 @@
 def solution(enroll, referral, seller, amount):
-    # name : (parent, total)
-    Node  = {"-" : ["x", 0]}
+    tree = dict()
+    tree['-'] = [None, 0]
 
     for i in range(len(enroll)):
-        Node[enroll[i]] = [referral[i], 0]
+        name, parent = enroll[i], referral[i]
+        tree[name] = [parent, 0]
 
     for i in range(len(seller)):
-        income = amount[i] * 100
-        child = seller[i]
+        node, val = seller[i], amount[i]
+        val *= 100
 
-        while  child in Node:
+        # Insert
+        while node:
+            if val == 0:
+                break
+            yours = val // 10
+            val -= yours
 
-            parent = Node[child][0]
-            yours = income // 10
-            mine = income - yours
-            Node[child][1] += mine
-            income = yours
+            tree[node][1] += val
+            val = yours
 
-            child = Node[child][0]
+            node = tree[node][0]
 
     result = []
-    for k, v in Node.items():
-        if k != "-":
+
+    for k, v in tree.items():
+        if k != '-':
             result.append(v[1])
 
     return result
@@ -33,3 +37,4 @@ print(solution(["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "youn
 print(solution(["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"],
                ["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"],
                ["sam", "emily", "jaimie", "edward"],[2, 3, 5, 4]))
+
