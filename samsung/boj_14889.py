@@ -11,20 +11,15 @@ for _ in range(N):
     board.append(line)
 
 combi = list(itertools.combinations(range(N), N//2))
+start = 0
+link = len(combi) - 1
 
-visited = set()
 min_gap = _sum
 
-while combi:
-    now = combi.pop()
-    _now = tuple(filter(lambda x: x not in now, range(N)))
+while start < len(combi) // 2:
+    now = combi[start]
+    _now = combi[link]
 
-    if now in visited or _now in visited:
-        continue
-    # print(now, _now)
-
-    visited.add(now)
-    visited.add(_now)
 
     start_sum = 0
     link_sum = 0
@@ -42,6 +37,9 @@ while combi:
 
     gap = abs(start_sum - link_sum)
     min_gap = min(min_gap, gap)
+
+    start += 1
+    link -= 1
 
 
 print(min_gap)
