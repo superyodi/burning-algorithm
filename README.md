@@ -1,3 +1,4 @@
+![ExhaustedFocusedDrake-size_restricted](https://user-images.githubusercontent.com/31922389/126741328-ab211878-0998-4b02-bb93-58f682f0d2a4.gif)
 # burning-algorithm
 
 🔥알고리즘 부수기🔥
@@ -18,6 +19,4 @@
 요즘은 [삼성 SDS 대학생 알고리즘 특강에서 푸는 백준 문제들](https://github.com/superyodi/burning-algorithm/issues/1)을 올리고 있습니다. ~~(그것이 버닝 알고리즘이니까)~~    
 
 
-
-
-![thatispromise](https://user-images.githubusercontent.com/31922389/126741125-0e241cad-90b8-4246-b48a-34c22e32d774.gif)
+![thatispromise](https://user-images.githubusercontent.com/31922389/126741366-381311d9-1be0-4e6e-b70e-8bfbdec71ec2.gif)
