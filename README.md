@@ -1,4 +1,3 @@
-![ExhaustedFocusedDrake-size_restricted](https://user-images.githubusercontent.com/31922389/126741328-ab211878-0998-4b02-bb93-58f682f0d2a4.gif)
 # burning-algorithm
 
 🔥알고리즘 부수기🔥
