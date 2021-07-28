@@ -20,6 +20,6 @@ for _ in range(N):
             num = hq.heappop(arr)
             print(num[1])
         else:
-            print("0")
 
+            print("0")
 
