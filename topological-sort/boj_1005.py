@@ -1,79 +1,55 @@
-# ACM Craft
+# 백준 ACM Crft
 
 import sys, collections
-
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.child = {}
-
-
-def topological_sort(graph, indegree, times, goal):
-
-    if indegree[goal] == 0:
-        return times[goal]
-    build_time = [0] * len(times)
-
-    queue = collections.deque()
-
-    # 1. start node 찾기
-    for node, val in enumerate(indegree):
-        if val == 0:
-            queue.append(node)
-            build_time[node] = times[node]
-
-    # 2. graph의 간선 제거하면서 정렬
-    visited = set()
-
-    while queue:
-        now = queue.popleft()
-
-        if now in visited:
-            continue
-
-        visited.add(now)
-
-        if now in graph:
-            for node in graph[now]:
-                indegree[node] -= 1
-
-                # build_time update
-                build_time[node] = max(build_time[node], build_time[now] + times[node])
-
-                # 더이상 node를 가리키는 다른 노드가 없을때
-                if indegree[node] == 0 and node not in visited:
-                    queue.append(node)
-
-    return build_time[goal]
-
-
 
 T = int(sys.stdin.readline())
 
 tc = 0
+
+def t_sort(goal):
+    t_times = times.copy()
+    q = collections.deque()
+    visited = [False] * N
+
+    if indegrees[goal] == 0:
+        return times[goal]
+
+
+    for n in range(N):
+        if indegrees[n] == 0:
+            q.append(n)
+
+
+    while q:
+        now = q.popleft()
+        if visited[now]: continue
+        visited[now] = True
+
+        for node in graph[now]:
+            indegrees[node] -= 1
+            t_times[node] = max(t_times[node], t_times[now] + times[node])
+
+            if not visited[node] and indegrees[node] == 0:
+                q.append(node)
+
+
+    return t_times[goal]
+
+
 while tc < T:
-    N, K = map(int, sys.stdin.readline()[:-1].split(' '))
-    times = [0,]
-    D = list(map(int, sys.stdin.readline().split(' ')))
-    times.extend(D)
+    N, K = map(int, sys.stdin.readline().split(' '))
+    times = list(map(int, sys.stdin.readline().split(' ')))
+    indegrees = [0] * N
+    graph = {i : set() for i in range(N)}
 
-    # 인접리스트
-    graph = dict()
-    indegree = [0] * (N+1)
+    for _ in range(K):
+        x, y = map(int, sys.stdin.readline().split(' '))
 
-    for k in range(K):
-        node, child = map(int, sys.stdin.readline().split(' '))
-        if node not in graph:
-            graph[node] = set()
-
-        graph[node].add(child)
-        indegree[child] += 1
+        graph[x-1].add(y-1)
+        indegrees[y-1] += 1
 
     W = int(sys.stdin.readline())
 
-    # 위상 정렬
-    print(graph)
-    print(topological_sort(graph, indegree, times, W))
+    print(t_sort(W-1))
 
     tc += 1
-
