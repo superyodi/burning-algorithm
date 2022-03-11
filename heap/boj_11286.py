@@ -6,20 +6,36 @@ import heapq as hq
 
 
 N = int(sys.stdin.readline())
-arr = []
-for _ in range(N):
-    x = int(sys.stdin.readline())
-    if x != 0:
-        if x < 0:
-            hq.heappush(arr, (x*-1, x))
-        else:
-            hq.heappush(arr, (x, x))
+pos_heap = []
+neg_heap = []
 
+for i in range(N):
+    num = int(sys.stdin.readline())
+    if num < 0: # 음수일때
+        hq.heappush(neg_heap, num * -1)
+    elif num > 0:
+        hq.heappush(pos_heap, num)
     else:
-        if arr:
-            num = hq.heappop(arr)
-            print(num[1])
-        else:
+        if pos_heap and neg_heap:
+            pos = hq.heappop(pos_heap)
+            neg = hq.heappop(neg_heap)
 
-            print("0")
+            if pos < neg:
+                print(pos)
+                hq.heappush(neg_heap, neg)
+            else:
+                print(neg * -1)
+                hq.heappush(pos_heap, pos)
+        elif pos_heap:
+            pos = hq.heappop(pos_heap)
+            print(pos)
+        elif neg_heap:
+            neg = hq.heappop(neg_heap)
+            print(neg * -1)
+        else:
+            print(0)
+
+
+
+
 
